@@ -12,7 +12,6 @@ const getAll = async (_, res) => {
 const getById = async (req, res) => {
 
     const { id } = req.params;
-
     const result = await contacts.getContactById(id);
 
     if (!result) {
@@ -25,7 +24,6 @@ const getById = async (req, res) => {
 const addContact = async (req, res) => {
 
     const data = req.body;
-
     const result = await contacts.addContact(data);
 
     res.status(201).json(result);
@@ -33,7 +31,6 @@ const addContact = async (req, res) => {
 const deleteContact = async (req, res) => {
 
     const { id } = req.params;
-
     const result = await contacts.removeContact(id);
 
     if (!result) {      
@@ -47,7 +44,6 @@ const updateContact = async (req, res) => {
 
     const data = req.body;
     const { id } = req.params;
-
     const result = await contacts.updateContact(id, data);
 
     if (!result) {
