@@ -3,9 +3,9 @@ const logger = require('morgan');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
-const DB_Host = "mongodb+srv://Andrii:Fa86SWZR1xKxqh5U@cluster0.endazjf.mongodb.net/db-contacts"
+const DB_HOST = "mongodb+srv://Andrii:Fa86SWZR1xKxqh5U@cluster0.endazjf.mongodb.net/db-contacts"
 
-mongoose.connect(DB_Host)
+mongoose.connect(DB_HOST)
   .then(() => console.log("Database connection successful"))
   .catch((err) => console.log(err.message))
 
