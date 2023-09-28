@@ -1,12 +1,9 @@
-// const contacts = require("../models/contacts");
-
 const {Contact} = require("../models/contact")
 
 const { HttpError, controllerWrapper } = require("../helpers");
 
 const getAll = async (_, res) => {
 
-    // const result = await contacts.listContacts();
     const result = await Contact.find({}, "-createdAt -updatedAt -__v");
 
     res.json(result);
@@ -15,6 +12,7 @@ const getAll = async (_, res) => {
 const getById = async (req, res) => {
 
     const { id } = req.params;
+
     const result = await Contact.findById(id);
 
     if (!result) {
@@ -27,7 +25,6 @@ const getById = async (req, res) => {
 const addContact = async (req, res) => {
 
     const data = req.body;
-    // const result = await contacts.addContact(data);
     const result = await Contact.create(data);
 
     res.status(201).json(result);
@@ -35,6 +32,7 @@ const addContact = async (req, res) => {
 const deleteContact = async (req, res) => {
 
     const { id } = req.params;
+
     const result = await Contact.findByIdAndDelete(id);
 
     if (!result) {      
@@ -48,6 +46,7 @@ const updateContact = async (req, res) => {
 
     const data = req.body;
     const { id } = req.params;
+
     const result = await Contact.findByIdAndUpdate(id, data, {new: true} );
 
     if (!result) {
@@ -60,14 +59,11 @@ const updateContact = async (req, res) => {
 const updateStatusContact = async (req, res) => {
     const data = req.body;
     const { id } = req.params;
-    // if (!data) {
-    //     throw HttpError(400, "missing field favorite");
-    // }
+
     const result = await Contact.findByIdAndUpdate(id, data, {new: true} );
 
     if (!result) {
         throw HttpError(404, "Not found");
-        // throw HttpError(400, "missing field favorite");
     }
 
     res.json(result);
